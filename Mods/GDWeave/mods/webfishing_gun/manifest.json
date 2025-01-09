@@ -1,0 +1,12 @@
+{
+  "Id": "webfishing_gun",
+  "AssemblyPath": "webfishing_gun.dll",
+  "PackPath": "webfishing_gun.pck",
+  "Dependencies": [ "Sulayre.Lure" ],
+  "Metadata": {
+    "Name": "webfishing_gun",
+    "Description": "Adds a Gun",
+    "Author": "Lily",
+    "Version": "1.0.0"
+  }
+}

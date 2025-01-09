@@ -1,0 +1,13 @@
+{
+  "Id": "Sulayre.Lure",
+  "AssemblyPath": "Sulayre.Lure.dll",
+  "PackPath": "Sulayre.Lure.pck",
+  "Dependencies": [],
+  "Metadata": {
+    "Name": "Lure",
+    "Author": "Sulayre, ZeaTheMays and GitHub Contributors",
+    "Version": "4.2.2",
+    "Description": "Legacy (Pre-Rewrite) version of a project that aims to restore unused game functionality, also used as an API to make adding content to WEBFISHING easier, faster and compatible.",
+    "Homepage": "https://github.com/Sulayre/WebfishingLure"
+  }
+}

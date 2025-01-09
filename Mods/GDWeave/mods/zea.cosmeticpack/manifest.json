@@ -1,0 +1,5 @@
+{
+    "Id": "Zea.CosmeticPack",
+    "PackPath": "zea.cosmetics.pck",
+    "Dependencies" : ["Sulayre.Lure"]
+}

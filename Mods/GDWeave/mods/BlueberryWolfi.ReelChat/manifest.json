@@ -1,0 +1,13 @@
+{
+	"Id": "BlueberryWolfi.ReelChat",
+	"PackPath": "ReelChat.pck",
+	"Dependencies": [
+		"BlueberryWolfi.APIs"
+	],
+	"Metadata": {
+		"Name": "ReelChat",
+		"Author": "BlueberryWolfi",
+		"Version": "v1.1.0",
+		"Description": "Proximity Voice Chat Mod for Webfishing"
+	}
+}

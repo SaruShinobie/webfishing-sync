@@ -1,0 +1,8 @@
+{
+	"Id": "PotatoRadio",
+	"AssemblyPath": "PotatoRadioPathFetcher.dll",
+	"Dependencies": [
+		"Sulayre.Lure"
+	],
+	"PackPath": "PotatoRadio.pck"
+}

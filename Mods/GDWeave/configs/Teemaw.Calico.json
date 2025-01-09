@@ -1,0 +1,12 @@
+{
+  "DynamicZonesEnabled": true,
+  "LoadingWaitTimeoutEnabled": true,
+  "LobbyQolEnabled": true,
+  "MapSoundOptimizationsEnabled": true,
+  "MeshGpuInstancingEnabled": true,
+  "MultiThreadNetworkingEnabled": true,
+  "PlayerOptimizationsEnabled": true,
+  "ReducePhysicsUpdatesEnabled": true,
+  "SmoothCameraEnabled": true,
+  "ZzCompatOverrideMayCauseCrash": false
+}

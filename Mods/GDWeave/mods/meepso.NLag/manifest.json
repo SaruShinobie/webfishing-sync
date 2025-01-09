@@ -1,0 +1,10 @@
+{
+  "Id": "Meepso.NLag",
+  "AssemblyPath": "Meepso.NLag.dll",
+  "Metadata": {
+    "Name": "NLag",
+    "Author": "Meepso",
+    "Version": "1.0.5",
+    "Description": "Make the fish multithreaded"
+  }
+}

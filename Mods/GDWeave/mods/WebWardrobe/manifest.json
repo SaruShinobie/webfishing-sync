@@ -1,0 +1,11 @@
+{
+    "Id": "WebWardrobe",
+    "AssemblyPath": "WebWardrobe.dll",
+    "PackPath": "WebWardrobe.pck",
+    "Metadata": {
+        "Name": "WebWardrobe",
+        "Author": "Nowaha",
+        "Version": "1.0.5",
+        "Description": "Load and save outfits!"
+    }
+}
