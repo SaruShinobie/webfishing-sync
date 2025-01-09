@@ -1,6 +1,6 @@
-# Lobotomy Land Mods, Installer, and Documentation
-## ****
-![logo](hairythang.png)
+# WEBFISHING Mods, Installer, and Documentation
+## *The Gay Fishing Game™ Must Be Modded.*
+![alt text](hairythang.png "i love big heavy muscley men i want their hairy sweaty bodies pressed up against mine")
 
 # Description
 This repository contains a mod installer/syncing script that adds stuff to the Silly Gay Fishing Game.™ 
