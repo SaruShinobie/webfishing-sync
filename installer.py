@@ -25,9 +25,14 @@ from pathlib import Path
 
 # -----------define some functions ahead of time------------
 
-# idea! consolidate both delete things and add an extra optino to the functions that toggles-
+
+# idea! consolidate both delete things and add an extra option to the functions that toggles-
 # -error outputs using an if statement in the function's code `if quiet = true then... else...`
-def delete_directory_warn(directory_to_delete):
+
+# as far as i can tell, i wanted to add an "option" to the function that toggled the warning m-
+# -essage, so i dont have to use all this space here defining functions i dont really need.
+
+def delete_directory_warn(directory_to_delete, warn=False):
     #this defines a function to delete a directory (no shit)
     try:
         shutil.rmtree(str(directory_to_delete))
@@ -35,25 +40,31 @@ def delete_directory_warn(directory_to_delete):
         print("[ERR!]: %s - %s." % (e.filename, e.strerror))
 
 def delete_file_warn(file_to_delete):
-    #this defines a function to delete a directory (no shit)
+    #this defines a function to delete a file (no shit)
     try:
         os.remove(str(file_to_delete))
     except OSError as e:
         print("[ERR!]: %s - %s." % (e.filename, e.strerror))
 
 def delete_directory(directory_to_delete):
-    #this defines a function to delete a directory (no shit)
+    #this defines a function to delete a directory (without any warnings)
     try:
         shutil.rmtree(str(directory_to_delete))
     except:
         pass
 
 def delete_file(file_to_delete):
-    #this defines a function to delete a directory (no shit)
+    #this defines a function to delete a file (without any warnings)
     try:
         os.remove(str(file_to_delete))
     except:
         pass
+
+def compress_tar(folder_path, output_file):
+    #this defines a function to compress a folder into a tarball
+    with tarfile.open(output_file, "w:gz") as tar:
+        tar.add(folder_path, arcname=os.path.basename(folder_path))
+    #gemini lowkey slayed w this one
 
 def extract_tar(tar_file_path, extract_to):
     #this defines a function to decompress a tar.gz file
@@ -99,41 +110,22 @@ def print_ascii_art():
     print("                                           ....")
     print()
 
-def windows_check_folder_exists(folder):
-    #checks for mod folder existence and outputs [WARN!]
-    dir = os.path.normpath(str(Path.cwd()) + "/" + str(folder))
-        # fuck you microsoft
-        # this is some high-tier BULLSHIT right here
-    # print(dir)
-    if not os.path.exists(dir):
-        print()
-        print("[WARN!]: Mod folder not found. (is Fabric installed?)")
-        print("[WARN!]: (note: the script will go on as usual without breaking anything, but if")
-        print("[WARN!]: you don't have fabric installed, your mods won't load when you start the game.")
-        os.mkdir("mods")
-        print()
-        time.sleep(20)
-
-def check_for_old_mod_archive(filepath):
+def checkfor_and_delete_file(filepath):
     #deletes old downloaded mod archives
     if os.path.exists(filepath):
         print("Found previously downloaded archive, deleting...")
         os.remove(filepath)
 
-def compress_tar(folder_path, output_file):
-    with tarfile.open(output_file, "w:gz") as tar:
-        tar.add(folder_path, arcname=os.path.basename(folder_path))
-    #gemini lowkey slayed w this one
-
 
 # --------------------the real shit!------------------------
 
 
-#`global` sets these variables to exist outside of the scope of these specific `if` statements.
+#`global` sets these variables to exist outside of the scope of these specific `if` statements
+#why do i need that?
 global gamedir
 global homedir
 global savedir
-    #can i group these together?
+    #can i group these?
     #do i still need these to be global vars?
 
 homedir = os.path.expanduser("~")
@@ -144,60 +136,60 @@ if platform.system() == "Linux":
     time.sleep(1)
     print("Operating system detected: GNU/Linux")
 
-    time.sleep(1)  # import time
+    time.sleep(1)
     print("Backing up save files...")
     print("Don't close the window! This'll take a moment...")
 
-    # here we cd to the save folder and save that path as a variable
+    #first, we cd to the save folder and save that path as a variable
     os.chdir(".steam/steam/steamapps/compatdata/3146520/pfx/drive_c/users/steamuser/AppData/Roaming/Godot/app_userdata/webfishing_2_newver/")
     savedir = Path.cwd()
     os.chdir(homedir)
 
-    #in this block we cd to savedir and then zip the old save file
+    #...then in this block we cd to savedir and then zip the old save file
     os.chdir(savedir)
     os.chdir('..') #go up one folder
     compress_tar("webfishing_2_newver", "webfishing-save-backup.tar.gz")
 
-    # here we cd to the game files and 
+    # here we cd to the game files and...
     os.chdir(homedir)
     os.chdir(".local/share/Steam/steamapps/common/WEBFISHING/")
     gamedir = Path.cwd()
     print("[INFO] Changed current working directory to '" + str(gamedir) + "'")
 
-    # try deleting existing mods
+    #...try deleting existing mods
     print("Cleaning game install...")
     delete_directory("GDWeave") #delete mods if they already exist
-    delete_file("winmm.dll") #this probably doesn't actually need to be removed before updating but for now we're doing it
+    delete_file("winmm.dll") #this probably doesn't actually need to be removed but for now we're doing it
 
-    mod_url = 'https://git.adolin.xyz/saru/webfishing-sync-tool/raw/branch/main/image.ico'
+    mod_url = 'https://placeholder.url' #define mod url 
     print("Fetching mod pack... This may take a few moments.")
     wget.download(url=mod_url)
     try:
         wget.download(url=mod_url)
     except:
         print()
-        print("[ERR!] FATAL: Couldn't fetch new mods from the git repository. (is Adolin online?)")
-        time.sleep(2)  # import time
+        print("[ERR!] FATAL: Couldn't fetch new mods from the git repository. (Is Adolin online?)")
+        time.sleep(2)
         print("[ERR!] Exiting...")
-        time.sleep(2)  # import time
+        time.sleep(5)
         exit
 
-elif platform.system() == "Windows":
-    print("Operating system detected: Microsoft Windows")
-    
-    os.chdir("AppData/Godot/app_userdata/webfishing_2_newver")
-    savedir = Path.cwd()
-    os.chdir(homedir)
-
-    os.chdir("C:/Program Files (x86)/Steam/steamapps/common/WEBFISHING/")
-    gamedir = Path.cwd()
-
-    delete_directory("GDWeave") #delete mods if they already exist
-    delete_file("winmm.dll") #this probably doesn't actually need to be removed before updating but for now we're doing it
-
-    os.chdir(savedir)
-    os.chdir('..') #go up one folder
-    compress_tar("webfishing_2_newver", "webfishing-save-backup.tar.gz")
+# elif platform.system() == "Windows":
+#     print("Operating system detected: Microsoft Windows")
+#     
+#     os.chdir("AppData/Godot/app_userdata/webfishing_2_newver") #?
+#     savedir = Path.cwd()
+#     os.chdir(homedir)
+# 
+#     os.chdir("C:/Program Files (x86)/Steam/steamapps/common/WEBFISHING/") #?
+#     gamedir = Path.cwd()
+# 
+#     delete_directory("GDWeave") #delete mods if they already exist
+#     delete_file("winmm.dll") #this probably doesn't actually need to be removed before updating but for now we're doing it
+# 
+#     os.chdir(savedir)
+#     os.chdir('..') #go up one folder
+#     compress_tar("webfishing_2_newver", "webfishing-save-backup.tar.gz")
 
 
 # --------------------the real shit!------------------------
