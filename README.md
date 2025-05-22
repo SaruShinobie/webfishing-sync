@@ -27,5 +27,8 @@ misc:
    - maybe host save files on my domain? could get seriously out of hand if it blows up, but i kinda doubt it
    - how would they access their save on the other device? a link to files? a link to a script that asks for a username/key? would be weird to figure out
 
+todo:
+ - actually figure out git LFS so i can version control the mods in the modpack
+   - tarballs will be available through releases
 
 *Copyright (c) 2024-2025 Obie Hinojosa*
