@@ -132,6 +132,7 @@ homedir = os.path.expanduser("~")
 os.chdir(homedir)
 
 #need to figure out what can happen here outside of `if` statements because this is painful to look at
+# - which operations here are os agnostic? what can we do regardless of whether they're on linux or win?
 if platform.system() == "Linux":
     time.sleep(1)
     print("Operating system detected: GNU/Linux")
@@ -174,6 +175,10 @@ if platform.system() == "Linux":
         time.sleep(5)
         exit
 
+
+# --------------------- !!! TODO !!!------------------------
+
+
 # elif platform.system() == "Windows":
 #     print("Operating system detected: Microsoft Windows")
 #     
@@ -192,6 +197,4 @@ if platform.system() == "Linux":
 #     compress_tar("webfishing_2_newver", "webfishing-save-backup.tar.gz")
 
 
-# --------------------the real shit!------------------------
-
- 
+# --------------------- !!! TODO !!!------------------------
